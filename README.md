@@ -70,7 +70,7 @@ Backend:
 
 # Video Explanation
 
-    Video Explanation Link (Replace # with the actual link)
+   https://drive.google.com/file/d/1Qsc64Z96sOr0HzLSLv78t-XGWDNzQBSb/view?usp=drive_link
 
 # Live Deployment
 
