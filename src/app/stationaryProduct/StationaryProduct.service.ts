@@ -6,20 +6,23 @@ const createProductIntoDB = async (product: Product)=>{
     return result;
 }
 
-const getAllProductsFromDb = async(searchTerm: any) =>{
+const getAllProductsFromDb = async (searchTerm: any) => {
     let query = {};
     if (searchTerm) {
-      query = {
-        $or: [
-          { name: { $regex: searchTerm, $options: 'i' } }, 
-          { brand: { $regex: searchTerm, $options: 'i' } }, 
-          { category: { $regex: searchTerm, $options: 'i' } }, 
-        ],
-      };
+        query = {
+            $or: [
+                { name: { $regex: searchTerm, $options: 'i' } }, 
+                { brand: { $regex: searchTerm, $options: 'i' } }, 
+                { category: { $regex: searchTerm, $options: 'i' } }
+            ],
+        };
     }
+
+    // Fetching all products if no searchTerm is provided
     const result = await ProductModel.find(query);
     return result;
-}
+};
+
 
 const getSignleProductFromDb = async(id: string) =>{
     const result = await ProductModel.findById(id);
@@ -31,10 +34,11 @@ const deleteProductFromDb = async(id: string) =>{
     return result;
 }
 
-const updateProductFromDb = async(id: string, updatedData: object) =>{
-    const result = await ProductModel.updateOne(
+const updateProductFromDb = async(id: string, updateData: object) =>{
+    const result = await ProductModel.findOneAndUpdate(
         {_id: id},
-        {$set: updatedData}
+        updateData,
+        {new: true}
     );
     return result;
 }

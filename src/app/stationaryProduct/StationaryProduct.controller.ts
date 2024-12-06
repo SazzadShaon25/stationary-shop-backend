@@ -7,7 +7,7 @@ import { ProductServices } from "./StationaryProduct.service";
 const createProduct = async(req: Request, res: Response) =>{
 
     try{
-        const product = req.body.products;
+        const product = req.body;
         const result = await ProductServices.createProductIntoDB(product);
         
         res.status(200).json({
@@ -57,7 +57,7 @@ const getAllProducts = async(req: Request, res: Response) =>{
         } else {
             res.status(200).json({
                 message: "Products retrieved successfully",
-                success: true,
+                status: true,
                 data: result,
             });
         }
@@ -66,7 +66,7 @@ const getAllProducts = async(req: Request, res: Response) =>{
 
         res.status(500).json({
             message: "An unexpected error occurred",
-            success: false,
+            status: false,
             error: error.message,
             stack: error.stack
         });
@@ -89,7 +89,7 @@ const getSignleProduct = async(req: Request, res: Response) =>{
         } else {
             res.status(200).json({
                 message: "Product retrieved successfully",
-                success: true,
+                status: true,
                 data: result,
             });
         }
@@ -98,7 +98,7 @@ const getSignleProduct = async(req: Request, res: Response) =>{
 
         res.status(500).json({
             message: "An unexpected error occurred",
-            success: false,
+            status: false,
             error: error.message,
             stack: error.stack
         });
@@ -130,7 +130,7 @@ const deleteProduct = async(req: Request, res: Response) =>{
 
         res.status(500).json({
             message: "An unexpected error occurred",
-            success: false,
+            status: false,
             error: error.message,
             stack: error.stack
         });
@@ -163,7 +163,7 @@ const updateProduct = async(req: Request, res: Response) =>{
         
         res.status(500).json({
             message: "An unexpected error occurred",
-            success: false,
+            status: false,
             error: error.message,
             stack: error.stack
         });

@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Mongoose, Schema } from "mongoose";
 import { Order } from "./Order.interface";
 import isEmail from "validator/lib/isEmail";
 
@@ -12,7 +12,8 @@ const OrderSchema = new Schema<Order>({
         }
     },
     product:{
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'ProductModel',
         required: [true, 'Product id is required']
     },
     quantity:{
