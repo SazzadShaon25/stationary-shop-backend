@@ -3,12 +3,12 @@ import { OrderServices } from "./Order.service";
 
 const createOrder = async(req: Request, res: Response)=>{
     try{
-        const order = req.body.orders;
+        const order = req.body;
         const result = await OrderServices.createOrderIntoDb(order);
         
         res.status(200).json({
             message: "Order created successfully",
-            success: true,
+            status: true,
             data: result
         })
 
@@ -17,7 +17,7 @@ const createOrder = async(req: Request, res: Response)=>{
         if (error.name === "ValidationError") {
             res.status(400).json({
                 message: "Validation failed",
-                success: false,
+                status: false,
                 error: {
                     name: error.name,
                     errors: error.errors
